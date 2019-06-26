@@ -1267,7 +1267,6 @@ namespace PiCBootLoader
             bool updateApp = path != supportPath; // Do not update if start from the default support path
             if (File.Exists(updater))
             {
-                //Version currentVersion = new Version(FileVersionInfo.GetVersionInfo(currentProgram).FileVersion);
                 Version currentVersion = new Version(FileVersionInfo.GetVersionInfo(currentProgram).FileVersion);
                 Version originVersion = new Version(FileVersionInfo.GetVersionInfo(updater).FileVersion);
 
@@ -1308,10 +1307,10 @@ namespace PiCBootLoader
             if (Registry.GetValue("HKEY_CLASSES_ROOT\\.acihex", String.Empty, String.Empty) == null)
             {
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\Classes\\.acihex", "", "hexfile");
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\Classes\\.acihexp", "FriendlyTypeName", "My Friendly Type Name");
+                //Registry.SetValue("HKEY_CURRENT_USER\\Software\\Classes\\.acihexp", "FriendlyTypeName", "My Friendly Type Name");
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\Classes\\.acihex\\shell\\open\\command", "",
-                    updater + " \"%1\"");
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\Classes\\.ext", "", "CopTrax Firmware Updater");
+                    "\"" + updater + "\" \"%1\"");
+                //Registry.SetValue("HKEY_CURRENT_USER\\Software\\Classes\\.ext", "", "CopTrax Firmware Updater");
 
                 //this call notifies Windows that it needs to redo the file associations and icons
                 //SHChangeNotify(0x08000000, 0x2000, IntPtr.Zero, IntPtr.Zero);
